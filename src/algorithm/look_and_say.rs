@@ -1,12 +1,24 @@
+type DigitCounter = (char, i64);
+
 #[allow(dead_code, unused_variables)]
 fn look_and_say(_num_to_look_at: &String) -> String {
-    return match _num_to_look_at.as_ref() {
-        "1" => String::from("11"),
-        "11" => String::from("21"),
-        "21" => String::from("1211"),
-        "1211" => String::from("111221"),
-        _ => String::from(""),
-    };
+    let mut tracker = vec!(DigitCounter::from((' ', 0)));
+
+    for byte in _num_to_look_at.chars() {
+        let mut counter = tracker.last_mut().unwrap();
+
+        let t = counter.0;
+
+        if t != byte {
+            tracker.push(DigitCounter::from((byte, 1)));
+        } else {
+            counter.1 += 1;
+        }
+    }
+
+    return tracker.iter()
+        .filter(|counter| counter.1 > 0)
+        .fold(String::from(""), |curr, now| format!("{}{}{}", curr, now.1, now.0));
 }
 
 #[cfg(test)]
