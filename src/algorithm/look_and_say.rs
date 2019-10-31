@@ -4,14 +4,14 @@ fn look_and_say(_num_to_look_at: &String) -> String {
         "1" => String::from("11"),
         "11" => String::from("21"),
         "21" => String::from("1211"),
-        _ => String::from("")
+        _ => String::from(""),
     };
 }
 
 #[cfg(test)]
 mod tests {
-    use test_case::test_case;
     use crate::algorithm::look_and_say::look_and_say;
+    use test_case::test_case;
 
     #[test_case("1", "11"; "when input is 1, expect output of 11")]
     #[test_case("11", "21"; "when input is 11, expect output of 21")]
