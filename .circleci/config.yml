@@ -25,6 +25,10 @@ jobs:
           command: cargo build --all --all-targets
 
       - run:
+          name: Install rustfmt
+          command: rustup component add rustfmt
+
+      - run:
           name: Check code style
           command: cargo fmt --all -- --check
 
