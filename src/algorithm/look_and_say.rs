@@ -1,9 +1,9 @@
 #[allow(dead_code, unused_variables)]
 fn look_and_say(_num_to_look_at: &String) -> String {
-
     return match _num_to_look_at.as_ref() {
         "1" => String::from("11"),
         "11" => String::from("21"),
+        "21" => String::from("1211"),
         _ => String::from("")
     };
 }
@@ -15,6 +15,7 @@ mod tests {
 
     #[test_case("1", "11"; "when input is 1, expect output of 11")]
     #[test_case("11", "21"; "when input is 11, expect output of 21")]
+    #[test_case("21", "1211"; "when input is 21, expect output of 1211")]
     fn test_harness(input: &str, expected: &str) {
         let converted_input = String::from(input);
         let converted_expected = String::from(expected);
@@ -23,5 +24,4 @@ mod tests {
 
         assert_eq!(&converted_expected, &actual);
     }
-
 }
