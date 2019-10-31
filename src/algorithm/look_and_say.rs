@@ -14,6 +14,7 @@ mod tests {
     use crate::algorithm::look_and_say::look_and_say;
     use test_case::test_case;
 
+    #[test_case("", ""; "when input is blank, expect output of blank")]
     #[test_case("1", "11"; "when input is 1, expect output of 11")]
     #[test_case("11", "21"; "when input is 11, expect output of 21")]
     #[test_case("21", "1211"; "when input is 21, expect output of 1211")]
