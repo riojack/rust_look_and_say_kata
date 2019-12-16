@@ -2,7 +2,7 @@ type DigitCounter = (char, i64);
 
 #[allow(dead_code, unused_variables)]
 fn look_and_say(_num_to_look_at: &String) -> String {
-    let mut tracker = vec!(DigitCounter::from((' ', 0)));
+    let mut tracker = vec![DigitCounter::from((' ', 0))];
 
     for byte in _num_to_look_at.chars() {
         let mut counter = tracker.last_mut().unwrap();
@@ -16,9 +16,12 @@ fn look_and_say(_num_to_look_at: &String) -> String {
         }
     }
 
-    return tracker.iter()
+    return tracker
+        .iter()
         .filter(|counter| counter.1 > 0)
-        .fold(String::from(""), |curr, now| format!("{}{}{}", curr, now.1, now.0));
+        .fold(String::from(""), |curr, now| {
+            format!("{}{}{}", curr, now.1, now.0)
+        });
 }
 
 #[cfg(test)]
