@@ -5,22 +5,25 @@ fn look_and_say(_num_to_look_at: &String) -> String {
     let mut tracker = vec![DigitCounter::from((' ', 0))];
 
     for byte in _num_to_look_at.chars() {
-        let mut counter = tracker.last_mut().unwrap();
+        let mut last_digit_counter = tracker.last_mut().unwrap();
 
-        let t = counter.0;
+        let last_digit = last_digit_counter.0;
 
-        if t != byte {
+        if last_digit != byte {
             tracker.push(DigitCounter::from((byte, 1)));
         } else {
-            counter.1 += 1;
+            last_digit_counter.1 += 1;
         }
     }
 
     return tracker
         .iter()
-        .filter(|counter| counter.1 > 0)
-        .fold(String::from(""), |curr, now| {
-            format!("{}{}{}", curr, now.1, now.0)
+        .filter(|digit_counter| digit_counter.1 > 0)
+        .fold(String::from(""), |accumulator, current_digit_counter| {
+            format!(
+                "{}{}{}",
+                accumulator, current_digit_counter.1, current_digit_counter.0
+            )
         });
 }
 
