@@ -1,4 +1,4 @@
-type DigitCounter = (char, i64);
+type DigitCounter = (char, usize);
 
 #[allow(dead_code, unused_variables)]
 fn look_and_say(_num_to_look_at: &String) -> String {
