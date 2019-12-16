@@ -2,28 +2,34 @@ type DigitCounter = (char, i64);
 
 #[allow(dead_code, unused_variables)]
 fn look_and_say(_num_to_look_at: &String) -> String {
-    let mut tracker = vec![DigitCounter::from((' ', 0))];
+    if _num_to_look_at.is_empty() {
+        return String::from("");
+    }
 
-    for byte in _num_to_look_at.chars() {
-        let mut last_digit_counter = tracker.last_mut().unwrap();
+    let chars_in_number = _num_to_look_at.chars();
+    let first_char_in_number = chars_in_number.clone().take(1).last().unwrap();
+
+    let mut digit_tracker = vec![DigitCounter::from((first_char_in_number, 1))];
+
+    for byte in chars_in_number.skip(1) {
+        let mut last_digit_counter = digit_tracker.last_mut().unwrap();
 
         let last_digit = last_digit_counter.0;
 
         if last_digit != byte {
-            tracker.push(DigitCounter::from((byte, 1)));
+            digit_tracker.push(DigitCounter::from((byte, 1)));
         } else {
             last_digit_counter.1 += 1;
         }
     }
 
-    return tracker
+    return digit_tracker
         .iter()
-        .filter(|digit_counter| digit_counter.1 > 0)
         .fold(String::from(""), |accumulator, current_digit_counter| {
-            format!(
-                "{}{}{}",
-                accumulator, current_digit_counter.1, current_digit_counter.0
-            )
+            let digit = current_digit_counter.0;
+            let count_of_digit = current_digit_counter.1;
+
+            format!("{}{}{}", accumulator, count_of_digit, digit)
         });
 }
 
