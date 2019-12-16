@@ -6,18 +6,18 @@ fn look_and_say(_num_to_look_at: &String) -> String {
         return String::from("");
     }
 
-    let chars_in_number = _num_to_look_at.chars();
-    let first_char_in_number = chars_in_number.clone().take(1).last().unwrap();
+    let digits_in_number = _num_to_look_at.chars();
+    let first_digit_in_number = digits_in_number.clone().take(1).last().unwrap();
 
-    let mut digit_tracker = vec![DigitCounter::from((first_char_in_number, 1))];
+    let mut digit_tracker = vec![DigitCounter::from((first_digit_in_number, 1))];
 
-    for byte in chars_in_number.skip(1) {
+    for digit in digits_in_number.skip(1) {
         let mut last_digit_counter = digit_tracker.last_mut().unwrap();
 
         let last_digit = last_digit_counter.0;
 
-        if last_digit != byte {
-            digit_tracker.push(DigitCounter::from((byte, 1)));
+        if last_digit != digit {
+            digit_tracker.push(DigitCounter::from((digit, 1)));
         } else {
             last_digit_counter.1 += 1;
         }
