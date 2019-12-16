@@ -37,6 +37,8 @@ mod tests {
     #[test_case("11", "21"; "when input is 11, expect output of 21")]
     #[test_case("21", "1211"; "when input is 21, expect output of 1211")]
     #[test_case("1211", "111221"; "when input is 1211, expect output of 111221")]
+    #[test_case("111221", "312211"; "when input is 111221, expect output of 312211")]
+    #[test_case("312211", "13112221"; "when input is 312211, expect output of 13112221")]
     fn test_harness(input: &str, expected: &str) {
         let converted_input = String::from(input);
         let converted_expected = String::from(expected);
